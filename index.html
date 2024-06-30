@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function getComputerChoice(){
+            let num = Math.floor(Math.random() * 10) % 3;
+            if(num == 0){
+                return "rock";
+            }
+            else if (num == 1){
+                return "paper"
+            }
+            else{
+                return "scissors"
+            }
+        }
+        
+        function getHumanChoice(){
+            let choice = prompt("What's your sign?");
+            return choice.toLowerCase();
+        }
+
+        let humanScore = 0;
+        let computerScore = 0;
+
+        
+        function playRound(humanChoice, computerChoice) {
+            if(humanChoice == "rock"){
+                if(computerChoice == "scissors"){
+                    console.log("You won! " + humanChoice + " beats " + computerChoice);
+                }
+                else if(computerChoice == "paper"){
+                    console.log("You lost! " + humanChoice + " loses to " + computerChoice);
+                }
+                else{
+                    console.log("You tied! " + humanChoice + " ties " + computerChoice);
+                }
+            }
+            else if(humanChoice == "paper"){
+                if(computerChoice == "scissors"){
+                    console.log("You lost! " + humanChoice + " loses to " + computerChoice);
+                }
+                else if(computerChoice == "rock"){
+                    console.log("You won! " + humanChoice + " beats " + computerChoice);
+                }
+                else{
+                    console.log("You tied! " + humanChoice + " ties " + computerChoice);
+                }
+            }
+            else{
+                if(computerChoice == "paper"){
+                    console.log("You won! " + humanChoice + " beats " + computerChoice);
+                }
+                else if(computerChoice == "rock"){
+                    console.log("You lost! " + humanChoice + " loses to " + computerChoice);
+                }
+                else{
+                    console.log("You tied! " + humanChoice + " ties " + computerChoice);
+                }
+            }
+        }
+
+        function playGame(){
+            for(let i=0; i<5; i++){
+
+                let humanSelection = getHumanChoice();
+                let computerSelection = getComputerChoice();
+
+                playRound(humanSelection, computerSelection);
+            }
+        }
+
+        playGame();
+
+    </script>
+</body>
+</html>
