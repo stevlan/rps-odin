@@ -6,6 +6,12 @@
     <title>Document</title>
 </head>
 <body>
+    <button class="rock">Rock</button>
+    <button class="paper">Paper</button>
+    <button class="scissors">Scissors</button>
+    <div class="text">
+
+    </div>
     <script>
 
         function getComputerChoice(){
@@ -29,54 +35,84 @@
         let humanScore = 0;
         let computerScore = 0;
 
+        rock = document.querySelector(".rock") 
+        paper = document.querySelector(".paper")
+        scissors = document.querySelector(".scissors")
+        section = document.querySelector("div")
+
         
         function playRound(humanChoice, computerChoice) {
+            const para = document.createElement("p");
             if(humanChoice == "rock"){
                 if(computerChoice == "scissors"){
-                    console.log("You won! " + humanChoice + " beats " + computerChoice);
+                    para.textContent = "You won! " + humanChoice + " beats " + computerChoice;
+                    humanScore++;
                 }
                 else if(computerChoice == "paper"){
-                    console.log("You lost! " + humanChoice + " loses to " + computerChoice);
+                    para.textContent = "You lost! " + humanChoice + " loses to " + computerChoice;
+                    computerScore++;
                 }
                 else{
-                    console.log("You tied! " + humanChoice + " ties " + computerChoice);
+                    para.textContent = "You tied! " + humanChoice + " ties " + computerChoice;
                 }
             }
             else if(humanChoice == "paper"){
                 if(computerChoice == "scissors"){
-                    console.log("You lost! " + humanChoice + " loses to " + computerChoice);
+                    para.textContent = "You lost! " + humanChoice + " loses to " + computerChoice;
+                    computerScore++;
                 }
                 else if(computerChoice == "rock"){
-                    console.log("You won! " + humanChoice + " beats " + computerChoice);
+                    para.textContent = "You won! " + humanChoice + " beats " + computerChoice;
+                    humanScore++;
                 }
                 else{
-                    console.log("You tied! " + humanChoice + " ties " + computerChoice);
+                    para.textContent = "You tied! " + humanChoice + " ties " + computerChoice;
                 }
             }
             else{
                 if(computerChoice == "paper"){
-                    console.log("You won! " + humanChoice + " beats " + computerChoice);
+                    para.textContent = "You won! " + humanChoice + " beats " + computerChoice;
+                    humanScore++;
                 }
                 else if(computerChoice == "rock"){
-                    console.log("You lost! " + humanChoice + " loses to " + computerChoice);
+                    para.textContent = "You lost! " + humanChoice + " loses to " + computerChoice;
+                    computerScore++;
                 }
                 else{
-                    console.log("You tied! " + humanChoice + " ties " + computerChoice);
+                    para.textContent = "You tied! " + humanChoice + " ties " + computerChoice;
                 }
             }
-        }
-
-        function playGame(){
-            for(let i=0; i<5; i++){
-
-                let humanSelection = getHumanChoice();
-                let computerSelection = getComputerChoice();
-
-                playRound(humanSelection, computerSelection);
+            const score = document.createElement("p");
+            score.textContent = "Score: " + humanScore + " - " + computerScore;
+            section.appendChild(para)
+            section.appendChild(score);
+            if(humanScore == 5 || computerScore == 5){
+                const over = document.createElement("p");
+                if(humanScore == 5){
+                    over.textContent = "User won";
+                }
+                else{
+                    over.textContent = "Computer won";
+                }
+                section.appendChild(over);
             }
         }
 
-        playGame();
+        rock.addEventListener("click", ()=> playRound("rock",getComputerChoice()));
+        paper.addEventListener("click", ()=> playRound("paper",getComputerChoice()));
+        scissors.addEventListener("click", ()=> playRound("scissors",getComputerChoice()));
+
+        // function playGame(){
+        //     for(let i=0; i<5; i++){
+
+        //         let humanSelection = getHumanChoice();
+        //         let computerSelection = getComputerChoice();
+
+        //         playRound(humanSelection, computerSelection);
+        //     }
+        // }
+
+        // playGame();
 
     </script>
 </body>
